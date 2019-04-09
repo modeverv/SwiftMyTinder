@@ -116,6 +116,39 @@ class ViewController: UIViewController {
 
     }
   }
-  
+
+
+  @IBAction func like(_ sender: Any) {
+    let person:UIView = people[selectedCardCount]
+
+    UIView.animate(withDuration: 0.2) {
+      //card.center = CGPoint(x: card.center.x + 350 , y: card.center.y)
+      person.center = CGPoint(x: person.center.x + 1350 , y: person.center.y)
+      self.resetCard()
+    }
+    self.liveImageView.alpha = 0
+    likedNames.append(names[selectedCardCount])
+    if selectedCardCount == names.count - 1 {
+      print(likedNames)
+      performSegue(withIdentifier: "next", sender: self)
+    }
+    self.selectedCardCount = (self.selectedCardCount + 1) % 4
+
+  }
+
+  @IBAction func dislike(_ sender: Any) {
+    let person:UIView = people[selectedCardCount]
+
+    UIView.animate(withDuration: 0.2) {
+      person.center = CGPoint(x: person.center.x - 1350 , y: person.center.y)
+      self.resetCard()
+    }
+    self.liveImageView.alpha = 0
+    if selectedCardCount == names.count - 1 {
+      print(likedNames)
+      performSegue(withIdentifier: "next", sender: self)
+    }
+    self.selectedCardCount = (self.selectedCardCount + 1) % 4
+  }
 }
 
