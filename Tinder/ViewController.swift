@@ -18,7 +18,6 @@ class ViewController: UIViewController {
   @IBOutlet var person3: UIView!
   @IBOutlet var person4: UIView!
 
-
   let names = ["人1","人2","人3","人4"]
   var likedNames = [String]()
   
