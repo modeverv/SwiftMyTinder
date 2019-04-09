@@ -8,16 +8,29 @@
 
 import UIKit
 
-class ListViewController: UIViewController {
+class ListViewController: UIViewController,UITableViewDataSource {
 
+  @IBOutlet var tableView: UITableView!
   var likedNames = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         print(likedNames)
 
+      tableView.dataSource = self
+
         // Do any additional setup after loading the view.
     }
+
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return likedNames.count
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+    cell.textLabel?.text = likedNames[indexPath.row]
+    return cell
+  }
     
 
     /*
